@@ -29,6 +29,8 @@ spec:
         app: vprofile
         tier: app
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
       containers:
         - name: vproapp
           image: ghcr.io/byraha/vprofile-app:v2
