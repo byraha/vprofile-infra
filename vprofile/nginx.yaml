@@ -23,7 +23,7 @@ metadata:
   name: vproapp-nginx
   namespace: vprofile
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: vprofile
     tier: nginx
