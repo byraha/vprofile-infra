@@ -1,0 +1,10 @@
+apiVersion: fleet.cattle.io/v1alpha1
+kind: GitRepo
+metadata:
+  name: vprofile-infra
+  namespace: fleet-local
+spec:
+  repo: https://github.com/byraha/vprofile-infra
+  branch: main
+  paths:
+    - vprofile

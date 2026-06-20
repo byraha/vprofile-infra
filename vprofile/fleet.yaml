@@ -1,2 +1,1 @@
-namespace: vprofile
-targetNamespace: vprofile
+defaultNamespace: vprofile
