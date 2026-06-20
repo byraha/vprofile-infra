@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: app01
+  namespace: vprofile
+spec:
+  selector:
+    app: vprofile
+    tier: app
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vproapp
+  namespace: vprofile
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: vprofile
+      tier: app
+  template:
+    metadata:
+      labels:
+        app: vprofile
+        tier: app
+    spec:
+      containers:
+        - name: vproapp
+          image: ghcr.io/byraha/vprofile-app:v2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: DB_HOST
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: DB_USER
+            - name: DB_PASS
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: DB_PASS
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"

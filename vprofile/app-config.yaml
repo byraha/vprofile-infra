@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: vprofile
+data:
+  # MySQL
+  DB_HOST: db01
+  DB_PORT: "3306"
+  DB_NAME: accounts
+  DB_USER: admin
+  DB_PASS: admin123
+  # Memcached
+  MC_HOST: mc01
+  MC_PORT: "11211"
+  # RabbitMQ
+  RMQ_HOST: rmq01
+  RMQ_PORT: "5672"
+  RMQ_USER: test
+  RMQ_PASS: test
+  # RabbitMQ admin
+  RABBITMQ_DEFAULT_USER: test
+  RABBITMQ_DEFAULT_PASS: test
